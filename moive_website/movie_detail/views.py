@@ -9,7 +9,7 @@ def index(request):
 # 查询电影前5条
 def select_moive(request):
     if request.method=="GET":
-        movies_detail=MovieMessage.objects.all()[:5]
+        movies_detail=MovieMessage.objects.all()
         movie_list=str_dict(movies_detail)
         return JsonResponse(movie_list,safe=False)
 # //把所有数据存储在列表
@@ -20,6 +20,7 @@ def str_dict(args):
         context["id"]=i.id
         context["title"] = i.title
         context["info"] = i.info
+        context["img"] = i.img
         context["area"] = i.area
         context["type"]=i.type
         context["star"] = i.star

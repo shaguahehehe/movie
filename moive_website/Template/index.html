@@ -9,11 +9,14 @@
     <!-- Bootstrap CSS -->
     <script src="{% static '/js/jquery-3.6.0.js' %}" ></script>
     <script src="{% static '/js/bootstrap.js' %}" ></script>
+    <script src="{% static '/js/axios.js' %}" ></script>
+    <script src="{% static '/js/vue.js' %}" ></script>
+
     <title>首页</title>
 </head>
 
 <body>
-<div>
+<div id="content">
 
     <!--导航栏-->
 	<nav class="navbar navbar-expand-xl navbar-dark bg-dark" style="position:fixed; top:0; right:0;left:0; z-index:99;" >
@@ -99,68 +102,17 @@
     <div style="margin:0 100px;">
     <h3 style=" margin-top:100px; margin-bottom:50px;">电影</h3>
     <a href="#" style="color:#666"><p align="right" style="margin:-50px 0 40px;">更多&#8250;</p></a>
-    <div class="row row-cols-1 row-cols-md-6" style="clear:both">
-      <div class="col mb-4">
-        <div class="card">
+    <div class="row row-cols-1 row-cols-md-6" style="clear:both" id="diany">
 
-        </div>
-      </div>
     </div>
     </div>
 
     <!--奥斯卡获奖作品-->
     <div style="margin:-50px 100px;">
-    <h3 style=" margin-top:100px; margin-bottom:50px;">奥斯卡历年获奖作品</h3>
+    <h3 style=" margin-top:100px; margin-bottom:50px;">连续剧</h3>
     <a href="#" style="color:#666"><p align="right" style="margin:-50px 0 40px;">更多&#8250;</p></a>
-    <div class="row row-cols-1 row-cols-md-6">
-      <div class="col mb-4">
-        <div class="card">
-          <img src="photo/卡7.jpg" class="card-img-top" alt="..."  height="285">
-          <div class="card-body" >
-            <p class="card-text">绿皮书</p>
-          </div>
-        </div>
-      </div>
-      <div class="col mb-4">
-        <div class="card">
-          <img src="photo/卡8.jpg" class="card-img-top" alt="..." height="285">
-         <div class="card-body" >
-            <p class="card-text">月光男孩</p>
-          </div>
-        </div>
-      </div>
-      <div class="col mb-4">
-        <div class="card">
-          <img src="photo/卡9.jpg" class="card-img-top" alt="..." height="285">
-          <div class="card-body" >
-            <p class="card-text">聚焦</p>
-          </div>
-        </div>
-      </div>
-      <div class="col mb-4">
-        <div class="card">
-          <img src="photo/卡10.jpg" class="card-img-top" alt="..." height="285">
-          <div class="card-body" >
-            <p class="card-text">艺术家</p>
-          </div>
-        </div>
-      </div>
-      <div class="col mb-4">
-        <div class="card">
-          <img src="photo/卡11.jpg" class="card-img-top" alt="..." height="285">
-          <div class="card-body" >
-            <p class="card-text">为奴十二年</p>
-          </div>
-        </div>
-      </div>
-      <div class="col mb-4">
-        <div class="card">
-          <img src="photo/卡12.jpg" class="card-img-top" alt="..." height="285">
-          <div class="card-body"  >
-            <p class="card-text">逃离德黑兰</p>
-          </div>
-        </div>
-      </div>
+    <div class="row row-cols-1 row-cols-md-6" id="lianxju">
+
     </div>
     </div>
 
@@ -169,54 +121,7 @@
     <h3 style=" margin-top:100px; margin-bottom:50px;">年度冷门佳片</h3>
     <a href="#" style="color:#666"><p align="right" style="margin:-50px 0 40px;">更多&#8250;</p></a>
     <div class="row row-cols-1 row-cols-md-6">
-      <div class="col mb-4">
-        <div class="card">
-          <img src="photo/卡13.jpg" class="card-img-top" alt="..."  height="285">
-          <div class="card-body" >
-            <p class="card-text">爱尔兰人</p>
-          </div>
-        </div>
-      </div>
-      <div class="col mb-4">
-        <div class="card">
-          <img src="photo/卡14.jpg" class="card-img-top" alt="..." height="285">
-         <div class="card-body" >
-            <p class="card-text">婚姻故事</p>
-          </div>
-        </div>
-      </div>
-      <div class="col mb-4">
-        <div class="card">
-          <img src="photo/卡15.jpg" class="card-img-top" alt="..." height="285">
-          <div class="card-body" >
-            <p class="card-text">死无对证</p>
-          </div>
-        </div>
-      </div>
-      <div class="col mb-4">
-        <div class="card">
-          <img src="photo/卡16.jpg" class="card-img-top" alt="..." height="285">
-          <div class="card-body" >
-            <p class="card-text">痛苦与荣耀</p>
-          </div>
-        </div>
-      </div>
-      <div class="col mb-4">
-        <div class="card">
-          <img src="photo/卡17.jpg" class="card-img-top" alt="..." height="285">
-          <div class="card-body" >
-            <p class="card-text">孟买酒店</p>
-          </div>
-        </div>
-      </div>
-      <div class="col mb-4">
-        <div class="card">
-          <img src="photo/卡18.jpg" class="card-img-top" alt="..." height="285">
-          <div class="card-body"  >
-            <p class="card-text">气球</p>
-          </div>
-        </div>
-      </div>
+
     </div>
     </div>
 
@@ -226,7 +131,7 @@
     <a href="#" style="color:#666"><p align="right" style="margin:-50px 0 40px;">更多&#8250;</p></a>
     <div class="row row-cols-1 row-cols-md-6">
       <div class="col mb-4">
-        <div class="card">
+        <div class="card4">
           <img src="photo/卡19.jpg" class="card-img-top" alt="..."  height="285">
           <div class="card-body" >
             <p class="card-text">哪吒之魔童降世</p>
@@ -234,7 +139,7 @@
         </div>
       </div>
       <div class="col mb-4">
-        <div class="card">
+        <div class="card4">
           <img src="photo/卡20.jpg" class="card-img-top" alt="..." height="285">
          <div class="card-body" >
             <p class="card-text">谁先爱上他的</p>
@@ -242,7 +147,7 @@
         </div>
       </div>
       <div class="col mb-4">
-        <div class="card">
+        <div class="card4">
           <img src="#" class="card-img-top" alt="..." height="285">
           <div class="card-body" >
             <p class="card-text">流浪地球</p>
@@ -250,7 +155,7 @@
         </div>
       </div>
       <div class="col mb-4">
-        <div class="card">
+        <div class="card4">
           <img src="photo/卡22.jpg" class="card-img-top" alt="..." height="285">
           <div class="card-body" >
             <p class="card-text">罗小黑战记</p>
@@ -258,7 +163,7 @@
         </div>
       </div>
       <div class="col mb-4">
-        <div class="card">
+        <div class="card4">
           <img src="photo/卡23.jpg" class="card-img-top" alt="..." height="285">
           <div class="card-body" >
             <p class="card-text">我和我的祖国</p>
@@ -266,7 +171,7 @@
         </div>
       </div>
       <div class="col mb-4">
-        <div class="card">
+        <div class="card4">
           <img src="photo/卡24.jpg" class="card-img-top" alt="..." height="285">
           <div class="card-body"  >
             <p class="card-text">地久天长</p>
@@ -293,25 +198,30 @@
 </body>
 
 <script>
-     $(function (){
-         $.ajax({
-             url:{% url 'select_moive' %},
-             type:"GET",
-             success:function (res) {
-                 console.log(res)
-                 if (res.length != 0){
-                     for(var i=0;i<res.length;i++){
-                           var html= '<img src='+ res[i].img+'class="card-img-top" alt="..."  height="285"><div class="card-body" ><p class="card-text">'+res[i].title+'</p></div>'
-                           console.log(html)
-                     }
+     new Vue({
+         el:"#content",
+         data:{
+         },
+         method:{
+             select:function () {
+
+                 axios.get(
+                     "http://127.0.0.1:8000/select_moive/"
+             ).then((res)=>function () {
+                    console.log(res)
                  }
-             },
-             error:function (error) {
-                 console.log(error)
+                 )
              }
-         }
-         )
+         },mounts:{
+             f:function () {
+                 this.select()
+             }
+         },
+
      })
+      $(function (){
+        select()
+    })
      {#<img src="photo/卡1.jpg" class="card-img-top" alt="..."  height="285">#}
      {#     <div class="card-body" >#}
      {#       <p class="card-text">真心办解</p>#}
