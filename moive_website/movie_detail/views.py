@@ -1,3 +1,5 @@
+import json
+
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.shortcuts import render
@@ -8,9 +10,11 @@ def index(request):
     return render(request,"index.html")
 # 查询电影前5条
 def select_moive(request):
+    print("2222")
     if request.method=="GET":
         movies_detail=MovieMessage.objects.all()
         movie_list=str_dict(movies_detail)
+
         return JsonResponse(movie_list,safe=False)
 # //把所有数据存储在列表
 def str_dict(args):

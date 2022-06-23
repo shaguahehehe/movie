@@ -103,6 +103,17 @@
     <h3 style=" margin-top:100px; margin-bottom:50px;">电影</h3>
     <a href="#" style="color:#666"><p align="right" style="margin:-50px 0 40px;">更多&#8250;</p></a>
     <div class="row row-cols-1 row-cols-md-6" style="clear:both" id="diany">
+        <div class="col mb-4" v-for="(moive,index) in moives">
+            {% verbatim myblock %}
+        <div class="card4" >
+          <img :src="moive.img" class="card-img-top" alt="..." >
+          <div class="card-body" >
+            <p class="card-text">{{ moive.title }}</p>
+
+          </div>
+        </div>
+            {% endverbatim myblock %}
+      </div>
 
     </div>
     </div>
@@ -194,51 +205,30 @@
 </div>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-
-</body>
-
 <script>
      new Vue({
          el:"#content",
          data:{
+             moives:[],
          },
          method:{
              select:function () {
 
-                 axios.get(
-                     "http://127.0.0.1:8000/select_moive/"
-             ).then((res)=>function () {
-                    console.log(res)
-                 }
-                 )
-             }
-         },mounts:{
-             f:function () {
-                 this.select()
              }
          },
+            mounted:function (){
+             var that=this
+             axios.get(
+                     "http://127.0.0.1:8000/select_moive/"
+             ).then( function(res){
+                 that.moives=res.data
+                 })
+                 .catch(function (e) {
+                     console.log(e)
+                 })
+            },
 
      })
-      $(function (){
-        select()
-    })
-     {#<img src="photo/卡1.jpg" class="card-img-top" alt="..."  height="285">#}
-     {#     <div class="card-body" >#}
-     {#       <p class="card-text">真心办解</p>#}
-     {#     </div>#}
-     {#$(function (){#}
-     {#    $.ajax({#}
-     {#        url:{% url 'select_page' %},#}
-     {#        type:"GET",#}
-     {#        success:function (res) {#}
-     {#            console.log(res)#}
-     {#        },#}
-     {#        error:function (error) {#}
-     {#            console.log(error)#}
-     {#        }#}
-     {#    }#}
-     {#    )#}
-     {#})#}
 {#$(function (){#}
 {#    var data={#}
 {#        type:"动作"#}
@@ -258,5 +248,8 @@
 {#     })#}
 
 </script>
+</body>
+
+
 
 </html>
