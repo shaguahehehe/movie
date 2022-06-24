@@ -5,6 +5,6 @@ urlpatterns = [
     path('', views.index),
     path('select_moive/', views.select_moive,name="select_moive"),
     path('select_page/', views.select_page,name="select_page"),
-path('select_contain/', views.select_contain,name="select_contain"),
+    path('select_contain/', views.select_contain,name="select_contain"),
 
 ]

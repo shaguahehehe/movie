@@ -72,7 +72,17 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'music_website.wsgi.application'
 
-
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': '/var/tmp/django_cache',
+        'TIMEOUT': 600,
+        'OPTIONS': {
+            'MAX_ENTRIES': 1000,
+            'CULL_FREQUENCY':5
+        }
+    }
+}
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 

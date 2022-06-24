@@ -60,7 +60,6 @@
       </div>
     </nav>
 
-
     <!--轮播图部分-->
     <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel" style="margin-top:55px;">
       <ol class="carousel-indicators">
@@ -106,10 +105,9 @@
         <div class="col mb-4" v-for="(moive,index) in moives">
             {% verbatim myblock %}
         <div class="card4" >
-          <img :src="moive.img" class="card-img-top" alt="..." >
+          <img :src="moive.img" class="card-img-top" alt="..."  >
           <div class="card-body" >
             <p class="card-text">{{ moive.title }}</p>
-
           </div>
         </div>
             {% endverbatim myblock %}

@@ -6,15 +6,17 @@ from django.shortcuts import render
 from  .models import *
 from django.http import HttpResponse,Http404,JsonResponse
 # Create your views here.
+from  django.views.decorators.cache import  cache_page
 def index(request):
     return render(request,"index.html")
-# 查询电影前5条
+# 查询电影
+@cache_page(30)
 def select_moive(request):
     print("2222")
     if request.method=="GET":
         movies_detail=MovieMessage.objects.all()
         movie_list=str_dict(movies_detail)
-
+        print("测试")
         return JsonResponse(movie_list,safe=False)
 # //把所有数据存储在列表
 def str_dict(args):
