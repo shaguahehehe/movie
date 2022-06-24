@@ -5,9 +5,8 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
-          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <!-- Bootstrap CSS -->
+    <link href="{% static '/css/bootstrap.css' %}" rel='stylesheet'>
     <script src="{% static '/js/jquery-3.6.0.js' %}"></script>
     <script src="{% static '/js/bootstrap.js' %}"></script>
     <script src="{% static '/js/axios.js' %}"></script>
@@ -64,6 +63,9 @@
             }
         }
 
+        #captcha {
+            cursor: pointer;
+        }
 
     </style>
 </head>
@@ -128,6 +130,7 @@
                 </div>
                 <div class="modal-body">
                     <form>
+
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label">账号</label>
                             <input type="text" class="form-control" id="recipient-name" v-model="username">
@@ -136,9 +139,14 @@
                             <label for="exampleInputPassword1">密码</label>
                             <input type="password" class="form-control" id="exampleInputPassword1" v-model="password">
                         </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">验证码:</label>
+                            <input type="password" class="form-control-sm" v-model="captcha">
+                            <img class="admin-captcha" id="captcha" width="90" height="30" src="{% url 'yzm' %}">
+                        </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
-                            <input type="submit" class="btn btn-primary" id="tijiao" value="确定"/>
+                            <button type="submit" class="btn btn-primary" id="tijiao" @click="login">登录</button>
                         </div>
                     </form>
                 </div>
@@ -203,29 +211,28 @@
                             <p style="color:#999999;">真心办解真心办解真心办解真心办解</p>
                         </div>
                     </div>
-                {% endverbatim myblock %}
-            </div>
-        </div>
-        <table class="table" style="">
-            <tbody>
-            <tr>
-                <td v-for="(moive,index) in moives.slice(0,6)">{% verbatim myblock %}<a href="#">
+                    </div>
+                    </div>
+                    <table class="table" style="">
+                    <tbody>
+                    <tr>
+                        <td v-for="(moive,index) in moives.slice(0,6)"><a href="#">
+                            {{ moive.title }}</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td v-for="(moive,index) in moives.slice(6,12)"><a href="#">
+                            {{ moive.title }}</a>
+                        </td>
+                    </tr>
+                    <tr>
+                    <td v-for="(moive,index) in moives.slice(12,18)"><a href="#">
                     {{ moive.title }}</a>{% endverbatim myblock %}
                 </td>
-            </tr>
-            <tr>
-                <td v-for="(moive,index) in moives.slice(6,12)">{% verbatim myblock %}<a href="#">
-                    {{ moive.title }}</a>{% endverbatim myblock %}
-                </td>
-            </tr>
-            <tr>
-                <td v-for="(moive,index) in moives.slice(12,18)">{% verbatim myblock %}<a href="#">
-                    {{ moive.title }}</a>{% endverbatim myblock %}
-                </td>
-            </tr>
+                </tr>
 
-            </tbody>
-        </table>
+                </tbody>
+                </table>
     </div>
 
 
@@ -378,7 +385,6 @@
 
     <footer class="bg-dark text-light" style="height:60px; padding-top:10px;">
         <p style="float:left;margin-left:100px;">关于本站</p>
-
         <p style="float:right;margin-right:100px;">客服电话:xxx-xxxx-xxxx</p>
         <p style="float:right;margin-right:50px;">技术合作</p>
         <p style="float:right;margin-right:50px;">内容合作</p>
@@ -396,20 +402,24 @@
         data: {
             moives: [],
             username: "",
-            password: ""
+            password: "",
+            captcha: "",
         },
-        method: {
+        methods: {
             login: function () {
                 axios.post(
                     "http://127.0.0.1:9000/login/",
                     {
                         username: this.username,
-                        password: this.password
+                        password: this.password,
+                        captcha:this.captcha
                     }
-                ).then(res=>{
-                    console.log(res)
-                    }
-                )
+                 ).then(function (res) {
+                console.log(res.data)
+            }
+                ).catch(function (e) {
+                    console.log(e)
+                })
             }
         },
         mounted: function () {
@@ -423,9 +433,15 @@
                     console.log(e)
                 })
         },
+    })
+    $(function () {
+        $("#captcha").click(
+            function () {
+                $("#captcha").attr("src", {% url 'yzm'  %}+"?data" + new Date().getTime())
+            }
+        )
 
     })
-
 
 </script>
 </body>

@@ -22,11 +22,16 @@ class adminMiddleware(object):
         if re.match("^/select_moive", path):
             response = self.get_response(request)
             return response
+        if re.match("^/yzm", path):
+            response = self.get_response(request)
+            return response
         if re.match("^/login",path):
             response = self.get_response(request)
+            return response
         else:
             if request.session.get("username","") !="":
                 response = self.get_response(request)
+                return response
             else:
                 return render(request,"index.html")
         return response
