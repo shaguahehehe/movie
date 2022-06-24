@@ -16,7 +16,13 @@ class adminMiddleware(object):
 
         path=request.path
         print("请求路径"+path)
-        if re.match("^/login"):
+        if re.match("^/static", path):
+            response = self.get_response(request)
+            return response
+        if re.match("^/select_moive", path):
+            response = self.get_response(request)
+            return response
+        if re.match("^/login",path):
             response = self.get_response(request)
         else:
             if request.session.get("username","") !="":
