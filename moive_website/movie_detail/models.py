@@ -10,6 +10,14 @@ from django.db import models
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
 
+class Stupwd(models.Model):
+    id = models.CharField(max_length=12, blank=True,primary_key=True)
+    pwd = models.CharField(max_length=12, blank=True, null=True)
+    name = models.CharField(max_length=12, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'stupwd'
 
 class AuthGroup(models.Model):
     name = models.CharField(unique=True, max_length=80)

@@ -2,7 +2,9 @@ import json
 
 from django.core.paginator import Paginator
 from django.db.models import Q
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse
+
 from  .models import *
 from django.http import HttpResponse,Http404,JsonResponse
 # Create your views here.
@@ -12,7 +14,6 @@ def index(request):
 # 查询电影
 @cache_page(30)
 def select_moive(request):
-    print("2222")
     if request.method=="GET":
         movies_detail=MovieMessage.objects.all()
         movie_list=str_dict(movies_detail)
@@ -73,3 +74,30 @@ def select_contain(request,currpage=1):
         movies_detail = paginator.page(currpage)
         movie_list = str_dict(movies_detail)
         return JsonResponse(movie_list, safe=False)
+def login(request):
+    stu1 = Stupwd.objects
+    verify_code = request.POST.get('captcha',None)
+    username = request.POST.get('username',None)
+    password = request.POST.get('password',None)
+    if verify_code == request.session['verifycode']:
+        if(~(username == None)):
+            try:
+                stu = stu1.get(name=username)
+                if username==stu.name and  stu.pwd==password:
+                    request.session['username']=username
+                    return redirect(reverse('select_sc',args=[1]))
+                else:
+                    message={
+                        "context":'账号或密码错误'
+                    }
+                    return render(request,"login.html",message)
+            except :
+                message = {
+                    "context": '账号或密码错误'
+                }
+                return render(request, "login.html", message)
+    else:
+        message = {
+            "context": '验证码错误'
+        }
+        return render(request,"index.html",message)

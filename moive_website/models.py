@@ -15,6 +15,14 @@ class Admin(models.Model):
     class Meta:
         managed = False
         db_table = 'admin'
+class Stupwd(models.Model):
+    id = models.CharField(max_length=12, blank=True,primary_key=True)
+    pwd = models.CharField(max_length=12, blank=True, null=True)
+    name = models.CharField(max_length=12, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'stupwd'
 
 
 class AuthGroup(models.Model):
