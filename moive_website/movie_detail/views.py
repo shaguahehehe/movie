@@ -25,31 +25,37 @@ def select_moive(request):
         movies_detail = MovieMessage.objects.all()
         movie_list = str_dict(movies_detail)
         print("测试")
-        return JsonResponse(movie_list, safe=False)
+        return JsonResponse(movie_list)
 
 
 # //把所有数据存储在列表
 def str_dict(args):
-    movie_list = []
+    movie_dict = {}
+    dianyi=[]
+    lianxj=[]
+    zongyi=[]
+    dongm=[]
     for i in args:
         context = {}
         context["id"] = i.id
         context["title"] = i.title
-        context["info"] = i.info
         context["img"] = i.img
-        context["area"] = i.area
-        context["type"] = i.type
-        context["star"] = i.star
-        context["alias"] = i.alias
-        context["director"] = i.director
         context["score"] = i.score
-        context["language"] = i.language
         context["year"] = i.year
         context["moive_id"] = i.moive_id
-        movie_list.append(context)
-    return movie_list
-
-
+        if i.moive_id ==1:
+            dianyi.append(context)
+        if i.moive_id == 2:
+            lianxj.append(context)
+        if i.moive_id == 3:
+            zongyi.append(context)
+        if i.moive_id == 4:
+            dongm.append(context)
+    movie_dict["diany"] =dianyi
+    movie_dict["lianxj"] = lianxj
+    movie_dict["zongyi"] = zongyi
+    movie_dict["dongm"] = dongm
+    return movie_dict
 def select_page(request, currpage=1):
     if request.method == "GET":
         movies_detail = MovieMessage.objects.all()

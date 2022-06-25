@@ -15,52 +15,69 @@
     <title>首页</title>
     <style>
         .card {
-            border: 0px;
-        }
+				border: 0px;
+			}
+			.card-text {
+				margin-left: 0px;
+			}
+			p{margin-top: -10px;}
+			a,p {
 
-        .card-text {
-            margin-left: 0px;
-        }
+				word-break: break-all;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				display: -webkit-box;
+				-webkit-box-orient: vertical;
+				-webkit-line-clamp: 1; // 数字代表文字需要显示几行}
+				a {
+					text-decoration: none;
+					color: #000;
 
-        p {
-            margin-top: -10px;
-        }
+				}
 
-        a, p {
+				a:hover {
+					text-decoration: none;
+					color: orange;
+				}
 
-            word-break: break-all;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-            -webkit-line-clamp: 1;
-        / / 数字代表文字需要显示几行
-        }
-
-        a {
-            text-decoration: none;
-            color: #000;
-
-        }
-
-        a:hover {
-            text-decoration: none;
-            color: orange;
-        }
-
-        li {
-            margin-top: 2%;
-        }
-
-        @media screen and (max-width: 1200px) {
-            #rank {
-
-                display: none;
-            }
-
-            .d-block w-100 {
-                height: 240px;
-            }
+				li{
+					margin-top: 2%;
+				}
+				@media screen and (max-width:1200px) {
+					#rank{
+						display: none;
+					}
+                    .card-img-top{
+                        height:400px;
+                    }
+				}
+				@media screen and (max-width:800px) {
+                    .card-img-top{
+                        height:350px;
+                    }
+				}
+				@media screen and (max-width:700px) {
+                    .card-img-top{
+                        height:300px;
+                    }
+				}
+				@media screen and (max-width:600px) {
+                    .card-img-top{
+                        height:300px;
+                    }
+                    card{width:100px}
+				}
+				@media screen and (max-width:500px) {
+                    .card-img-top{
+                        height:350px;
+                    }
+				}
+				.btplay{
+                     display:none;
+				}
+				img:hover .btplay{
+				    display:block;
+				}
         }
 
         #captcha {
@@ -197,46 +214,51 @@
 
     <!--即将上线-->
     <div style="margin:5% 10% 5% 10%; background-color: white;padding:1%;">
-        <h4 style="float: left;">即将上线</h4>
-        <a href="#" style="color:#666">
-            <p align="right" style="float: right;">更多&#8250;</p>
-        </a>
-        <div class="row" style="clear:both">
-            <div class="col-12 col-sm-6 col-lg-4 col-xl-2" v-for="(moive,index) in moives.slice(0,6)">
-                {% verbatim myblock %}
+        <div class="container">
+            <h4 style="float: left;">即将上线</h4>
+            <a href="#" style="color:#666">
+                <p align="right" style="float: right;">更多&#8250;</p>
+            </a>
+            <div class="row" style="clear:both">
+                <div class="col-12 col-sm-6 col-lg-4 col-xl-2" v-for="(moive,index) in diany.slice(0,6)" >
+                    {% verbatim myblock %}
                     <div class="card4">
-                        <img :src="moive.img" class="card-img-top" alt="..." height="25%" width="80%">
+                        <img :src="moive.img" class="card-img-top" alt="..." height="250">
+                        <img src="static/playButton.png" class="btplay" height="40%" width="40%"
+                             style="margin-top:-200%;margin-left:30%;">
                         <div class="card-body">
                             <p class="card-text">{{ moive.title }}</p>
-                            <p style="color:#999999;">真心办解真心办解真心办解真心办解</p>
+                            <p style="color:#999999;">{{ moive.title }}</p>
                         </div>
                     </div>
-                    </div>
-                    </div>
-                    <table class="table" style="">
-                    <tbody>
-                    <tr>
-                        <td v-for="(moive,index) in moives.slice(0,6)"><a href="#">
-                            {{ moive.title }}</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td v-for="(moive,index) in moives.slice(6,12)"><a href="#">
-                            {{ moive.title }}</a>
-                        </td>
-                    </tr>
-                    <tr>
-                    <td v-for="(moive,index) in moives.slice(12,18)"><a href="#">
-                    {{ moive.title }}</a>{% endverbatim myblock %}
-                </td>
+                    {% endverbatim myblock %}
+                </div>
+            </div>
+            <table class="table" style="">
+                <tbody>
+                <tr>
+                    <td v-for="(moive,index) in moives.slice(0,6)">{% verbatim myblock %}<a href="#">
+                        {{moive.title }}</a>{% endverbatim myblock %}
+                    </td>
+                </tr>
+                <tr>
+                    <td v-for="(moive,index) in moives.slice(6,12)">{% verbatim myblock %}<a href="#">
+                        {{moive.title }}</a>{% endverbatim myblock %}
+                    </td>
+                </tr>
+                <tr>
+                    <td v-for="(moive,index) in moives.slice(12,18)">{% verbatim myblock %}<a href="#">
+                        {{moive.title }}</a>{% endverbatim myblock %}
+                    </td>
                 </tr>
 
                 </tbody>
-                </table>
+            </table>
+        </div>
     </div>
 
 
-    <!--即将上线222-->
+    <!--电影-->
     <div style="margin:5% 10% 5% 10%; background-color: white;padding:1%;">
         <div class="container">
             <div class="row">
@@ -247,28 +269,28 @@
 
                 <div class="row col-12 col-xl-10 col-lg-12">
 
-                    <div class="col-12 col-sm-6 col-lg-4 col-xl-2" v-for="(moive,index) in moives.slice(0,12)">
+                    <div class="col-12 col-sm-6 col-lg-4 col-xl-2" v-for="(moive,index) in diany.slice(0,12)">
                         {% verbatim myblock %}
-                            <div class="card">
-                                <img :src="moive.img" class="card-img-top" alt="..." height="25%" width="80%">
-                                <div class="card-body">
-                                    <p class="card-text">{{ moive.title }}</p>
-                                    <p style="color:#999999;font-size: 5px">真心办解真心办解真心办解真心办解</p>
-                                </div>
+                        <div class="card">
+                            <img :src="moive.img" class="card-img-top" alt="..." height="180">
+                            <div class="card-body">
+                                <p class="card-text">{{moive.title}}</p>
+                                <p style="color:#999999;font-size: 5px">真心办解真心办解真心办解真心办解</p>
                             </div>
-                            </div>
-                        {% endverbatim myblock %}
+                        </div>
+                    </div>
+
 
                     <table class="table">
                         <tbody>
                         <tr>
-                            <td v-for="(moive,index) in moives.slice(0,6)">{% verbatim myblock %}<a href="#">
-                                {{ moive.title }}</a>{% endverbatim myblock %}
+                            <td v-for="(moive,index) in moives.slice(0,6)"><a href="#">
+                                {{moive.title }}</a>
                             </td>
                         </tr>
                         <tr>
-                            <td v-for="(moive,index) in moives.slice(6,12)">{% verbatim myblock %}<a href="#">
-                                {{ moive.title }}</a>{% endverbatim myblock %}
+                            <td v-for="(moive,index) in moives.slice(6,12)"><a href="#">
+                                {{moive.title }}</a>
                             </td>
                         </tr>
 
@@ -279,8 +301,8 @@
 
                 <div class="col-2" class="col-0 col-sm-0 col-lg-0 col-xl-2" id="rank">
                     <ol>
-                        <li v-for="(moive,index) in moives.slice(1,20)">{% verbatim myblock %}<a href="#">
-                            {{ moive.title }}</a>{% endverbatim myblock %}
+                        <li v-for="(moive,index) in diany.slice(1,20)" ><a href="#">
+                            {{moive.title }}</a>{% endverbatim myblock %}
                         </li>
                     </ol>
                 </div>
@@ -288,96 +310,153 @@
         </div>
     </div>
 
+    <!--连续剧-->
+    <div style="margin:5% 10% 5% 10%; background-color: white;padding:1%;">
+        <div class="container">
+            <div class="row">
+                <div class="row col-12">
+                    <h4 class="col-10">连续剧</h4>
+                    <h4 class="col-2" id="rank">排行榜</h4>
+                </div>
 
-    <!--    &lt;!&ndash;即将上线&ndash;&gt;-->
-    <!--    <div style="margin:0 100px;">-->
-    <!--        <h3 style=" margin-top:100px; margin-bottom:50px;">电影</h3>-->
-    <!--        <a href="#" style="color:#666"><p align="right" style="margin:-50px 0 40px;">更多&#8250;</p></a>-->
-    <!--        <div class="row row-cols-1 row-cols-md-6" style="clear:both" id="diany">-->
-    <!--            <div class="col mb-4" v-for="(moive,index) in moives">-->
-    <!--                {% verbatim myblock %}-->
-        <!--                <div class="card4">-->
-        <!--                    <img :src="moive.img" class="card-img-top" alt="...">-->
-        <!--                    <div class="card-body">-->
-        <!--                        <p class="card-text">{{ moive.title }}</p>-->
+                <div class="row col-12 col-xl-10 col-lg-12">
 
-        <!--                    </div>-->
-        <!--                </div>-->
-        <!--                {% endverbatim myblock %}-->
-    <!--            </div>-->
+                    <div class="col-12 col-sm-6 col-lg-4 col-xl-2" v-for="(moive,index) in lianxj.slice(0,12)">
+                        {% verbatim myblock %}
+                        <div class="card">
+                            <img :src="moive.img" class="card-img-top" alt="..." height="180">
+                            <div class="card-body">
+                                <p class="card-text">{{moive.title}}</p>
+                                <p style="color:#999999;font-size: 5px">真心办解真心办解真心办解真心办解</p>
+                            </div>
+                        </div>
+                    </div>
 
-    <!--        </div>-->
-    <!--    </div>-->
 
-    <!--奥斯卡获奖作品-->
-    <div style="margin:-50px 100px;">
-        <h3 style=" margin-top:100px; margin-bottom:50px;">连续剧</h3>
-        <a href="#" style="color:#666"><p align="right" style="margin:-50px 0 40px;">更多&#8250;</p></a>
-        <div class="row row-cols-1 row-cols-md-6" id="lianxju">
+                    <table class="table">
+                        <tbody>
+                        <tr>
+                            <td v-for="(moive,index) in moives.slice(0,6)"><a href="#">
+                                {{moive.title }}</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td v-for="(moive,index) in moives.slice(6,12)"><a href="#">
+                                {{moive.title }}</a>
+                            </td>
+                        </tr>
 
+                        </tbody>
+                    </table>
+                </div>
+
+
+                <div class="col-2" class="col-0 col-sm-0 col-lg-0 col-xl-2" id="rank">
+                    <ol>
+                        <li v-for="(moive,index) in lianxj.slice(1,20)"><a href="#">
+                            {{moive.title }}</a>{% endverbatim myblock %}
+                        </li>
+                    </ol>
+                </div>
+            </div>
         </div>
     </div>
+ <div style="margin:5% 10% 5% 10%; background-color: white;padding:1%;">
+        <div class="container">
+            <div class="row">
+                <div class="row col-12">
+                    <h4 class="col-10">综艺</h4>
+                    <h4 class="col-2" id="rank">排行榜</h4>
+                </div>
 
-    <!--年度冷门佳片-->
-    <div style="margin:-50px 100px;">
-        <h3 style=" margin-top:100px; margin-bottom:50px;">年度冷门佳片</h3>
-        <a href="#" style="color:#666"><p align="right" style="margin:-50px 0 40px;">更多&#8250;</p></a>
-        <div class="row row-cols-1 row-cols-md-6">
+                <div class="row col-12 col-xl-10 col-lg-12">
 
+                    <div class="col-12 col-sm-6 col-lg-4 col-xl-2" v-for="(moive,index) in zongyi.slice(0,12)">
+                        {% verbatim myblock %}
+                        <div class="card">
+                            <img :src="moive.img" class="card-img-top" alt="..." height="180">
+                            <div class="card-body">
+                                <p class="card-text">{{moive.title}}</p>
+                                <p style="color:#999999;font-size: 5px">真心办解真心办解真心办解真心办解</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <table class="table">
+                        <tbody>
+                        <tr>
+                            <td v-for="(moive,index) in moives.slice(0,6)"><a href="#">
+                                {{moive.title }}</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td v-for="(moive,index) in moives.slice(6,12)"><a href="#">
+                                {{moive.title }}</a>
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+
+                <div class="col-2" class="col-0 col-sm-0 col-lg-0 col-xl-2" id="rank">
+                    <ol>
+                        <li v-for="(moive,index) in zongyi.slice(1,20)"><a href="#">
+                            {{moive.title }}</a>{% endverbatim myblock %}
+                        </li>
+                    </ol>
+                </div>
+            </div>
         </div>
     </div>
+ <div style="margin:5% 10% 5% 10%; background-color: white;padding:1%;">
+        <div class="container">
+            <div class="row">
+                <div class="row col-12">
+                    <h4 class="col-10">动漫</h4>
+                    <h4 class="col-2" id="rank">排行榜</h4>
+                </div>
 
-    <!--华语榜单-->
-    <div style="margin:-50px 100px 50px;">
-        <h3 style=" margin-top:100px; margin-bottom:50px;">华语榜单</h3>
-        <a href="#" style="color:#666"><p align="right" style="margin:-50px 0 40px;">更多&#8250;</p></a>
-        <div class="row row-cols-1 row-cols-md-6">
-            <div class="col mb-4">
-                <div class="card4">
-                    <img src="photo/卡19.jpg" class="card-img-top" alt="..." height="285">
-                    <div class="card-body">
-                        <p class="card-text">哪吒之魔童降世</p>
+                <div class="row col-12 col-xl-10 col-lg-12">
+
+                    <div class="col-12 col-sm-6 col-lg-4 col-xl-2" v-for="(moive,index) in dongm.slice(0,12)">
+                        {% verbatim myblock %}
+                        <div class="card">
+                            <img :src="moive.img" class="card-img-top" alt="..." height="180">
+                            <div class="card-body">
+                                <p class="card-text">{{moive.title}}</p>
+                                <p style="color:#999999;font-size: 5px">真心办解真心办解真心办解真心办解</p>
+                            </div>
+                        </div>
                     </div>
+
+
+                    <table class="table">
+                        <tbody>
+                        <tr>
+                            <td v-for="(moive,index) in moives.slice(0,6)"><a href="#">
+                                {{moive.title }}</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td v-for="(moive,index) in moives.slice(6,12)"><a href="#">
+                                {{moive.title }}</a>
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
                 </div>
-            </div>
-            <div class="col mb-4">
-                <div class="card4">
-                    <img src="photo/卡20.jpg" class="card-img-top" alt="..." height="285">
-                    <div class="card-body">
-                        <p class="card-text">谁先爱上他的</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col mb-4">
-                <div class="card4">
-                    <img src="#" class="card-img-top" alt="..." height="285">
-                    <div class="card-body">
-                        <p class="card-text">流浪地球</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col mb-4">
-                <div class="card4">
-                    <img src="photo/卡22.jpg" class="card-img-top" alt="..." height="285">
-                    <div class="card-body">
-                        <p class="card-text">罗小黑战记</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col mb-4">
-                <div class="card4">
-                    <img src="photo/卡23.jpg" class="card-img-top" alt="..." height="285">
-                    <div class="card-body">
-                        <p class="card-text">我和我的祖国</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col mb-4">
-                <div class="card4">
-                    <img src="photo/卡24.jpg" class="card-img-top" alt="..." height="285">
-                    <div class="card-body">
-                        <p class="card-text">地久天长</p>
-                    </div>
+
+
+                <div class="col-2" class="col-0 col-sm-0 col-lg-0 col-xl-2" id="rank">
+                    <ol>
+                        <li v-for="(moive,index) in dongm.slice(1,20)"><a href="#">
+                            {{moive.title }}</a>{% endverbatim myblock %}
+                        </li>
+                    </ol>
                 </div>
             </div>
         </div>
@@ -401,6 +480,10 @@
         el: "#content",
         data: {
             moives: [],
+            diany:[],
+            lianxj:[],
+            zongyi:[],
+            dongm:[],
             username: "",
             password: "",
             captcha: "",
@@ -427,7 +510,10 @@
             axios.get(
                 "http://127.0.0.1:9000/select_moive/"
             ).then(function (res) {
-                that.moives = res.data
+                that.diany=res.data.diany
+                that.lianxj=res.data.lianxj
+                that.zongyi=res.data.zongyi
+                that.dongm=res.data.dongm
             })
                 .catch(function (e) {
                     console.log(e)
@@ -440,7 +526,6 @@
                 $("#captcha").attr("src", {% url 'yzm'  %}+"?data" + new Date().getTime())
             }
         )
-
     })
 
 </script>
